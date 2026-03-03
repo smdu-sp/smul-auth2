@@ -32,6 +32,7 @@ export class AppService {
     };
     const dbServers = await this.prisma.servidor.findMany({
       select: { ip: true },
+      where: { status: true },
     });
     const servers = dbServers.map((s) => `ldap://${s.ip}`);
     response.totalServers = servers.length;
